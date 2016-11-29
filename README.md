@@ -1,8 +1,6 @@
 # C-hw
 hw notes
 
-
-
 namespace ConsoleApplication2
 {
     class Program
@@ -87,14 +85,24 @@ namespace ConsoleApplication2
                 Console.WriteLine();
             }
 
+            Console.WriteLine("Player ID: ");
+            int key = Convert.ToInt32(Console.ReadLine());
             // input player ID or nickname
-            //var innerJoinQuery =
-            //        from cust in customers
-            //        join dist in distributors on cust.City equals dist.City
-            //        select new { CustomerName = cust.Name, DistributorName = dist.Name };
+            var innerJoinQuery =
+                    from player in table
+                    join owner in table3 on player.ID equals owner.PLAYER_ID
+                    where owner.PLAYER_ID == key
+                    select new { owner.POKEMON_ID };
+            
+            foreach (var element in innerJoinQuery)
+            {
+                Console.Write("{0}", element);
+                Console.WriteLine();
+            }
 
             Console.ReadKey();
         }
     }
 }
+
 
